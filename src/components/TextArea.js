@@ -102,9 +102,9 @@ export default function TextArea(props) {
 
       <div className="my-4 container-fluid">
         <h2><b>Text Summary</b><hr /></h2>
-        <p> <b>Words:</b><i><b>{text.split(" ").filter((element) => { return element.length !== 0 }).length}</b></i> </p>
+        <p> <b>Words:</b><i><b>{text.split(/\s+/).filter((element) => { return element.length !== 0 }).length}</b></i> </p>
         <p><b>Characters:</b> <i><b>{text.length}</b></i> </p>
-        <p><b>Estimated Reading time:</b> <i><b>{0.008 * text.split(" ").filter((element) => { return element.length !== 0 }).length} mins</b></i> </p>
+        <p><b>Estimated Reading time:</b> <i><b>{0.008 * text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} mins</b></i> </p>
 
       </div>
     </>

@@ -5,7 +5,7 @@ export default function Accordion(props) {
 
   let myStyle={
     color:props.mode ==='dark' ? 'white' : 'black',
-    backgroundColor:props.mode ==='dark' ? '#000000a6' : 'white',
+    backgroundColor:props.mode ==='dark' ? 'black' : 'white',
     borderColor:props.mode ==='dark' ? 'white' : 'black',
     border:'1px solid'
   };
