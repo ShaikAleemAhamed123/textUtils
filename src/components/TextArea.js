@@ -34,6 +34,7 @@ export default function TextArea(props) {
   const copyText=()=>{
     let elem=document.getElementById("texrea");
     elem.select();
+    console.log("Tet copied !");
     navigator.clipboard.writeText(elem.value);
     props.showAlert("success","Text Copied to ClipBoard!");
 
@@ -81,16 +82,16 @@ export default function TextArea(props) {
     <div>
         <div>
         <h3 style={myStyle} id="textHead">Enter text to Process....</h3>
-        <textarea style={myStyle} className="form-control" value={text} onChange={handleOnchange} placeholder="Enter text here....." rows="8"></textarea>
+        <textarea id="texrea" style={myStyle} className="form-control" value={text} onChange={handleOnchange} placeholder="Enter text here....." rows="8"></textarea>
 
         {/* <textarea value={text}  onChange={handleOnchange}  '     cols="50" rows="5"></textarea> */}
       </div>
       <div className="px-auto">
-      <button onClick={handleUpclick}  className="btn btn-primary btn-large m-2">To UpperCase</button>
-      <button onClick={handleDownclick} className="btn btn-primary btn-large m-2">To LowerCase</button>
-      <button onClick={extraSpaces} className="btn btn-primary btn-large m-2">Remove Extra Spaces</button>
-      <button onClick={copyText} className="btn btn-primary btn-large m-2">Copy Text</button>
-      <button onClick={clearAll} className="btn btn-primary btn-large m-2">Clear Text</button>
+      <button disabled={text.length===0} onClick={handleUpclick}  className="btn btn-primary btn-large m-2">To UpperCase</button>
+      <button disabled={text.length===0} onClick={handleDownclick} className="btn btn-primary btn-large m-2">To LowerCase</button>
+      <button disabled={text.length===0} onClick={extraSpaces} className="btn btn-primary btn-large m-2">Remove Extra Spaces</button>
+      <button disabled={text.length===0} onClick={copyText} className="btn btn-primary btn-large m-2">Copy Text</button>
+      <button disabled={text.length===0} onClick={clearAll} className="btn btn-primary btn-large m-2">Clear Text</button>
        </div>
        
     </div>
