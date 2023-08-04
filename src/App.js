@@ -60,7 +60,7 @@ function App() {
       // let tHead = document.getElementById("textHead");
       // tHead.style.color = "white";
 
-      showAlert("success", "Dark Mode Enabled !");
+      // showAlert("success", "Dark Mode Enabled !");
 
       document.title = "textUtils-darkMode";
 
@@ -80,7 +80,7 @@ function App() {
       // let tHead = document.getElementById("textHead");
       // tHead.style.color = "black";
 
-      showAlert("success", "Light Mode Enabled !");
+      // showAlert("success", "Light Mode Enabled !");
 
       document.title = "textUtils";
 
