@@ -2,9 +2,10 @@
 import "./App.css";
 import Navbar from "./components/Navbar.js";
 import TextArea from "./components/TextArea";
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import Alert from "./components/Alert";
 import Accordion from './components/Accordion';
+import Cookies from 'js-cookie';
 
 import {
   BrowserRouter as Router,
@@ -16,9 +17,17 @@ import {
 
 function App() {
 
-  const [mode, setMode] = useState('light'); // to toggle between dark and light modes.
+  const [mode, setMode] = useState( 'light'); // to toggle between dark and light modes.
 
   const [alert, setAlert] = useState(null);
+
+  useEffect(() => {
+    if(document.cookie.match('mode')){
+      if(Cookies.get('mode')==='dark'){
+        toggleMode();
+      }
+    }
+  }, []);
 
   const showAlert = (type, message) => {
     setAlert({
@@ -31,11 +40,19 @@ function App() {
     }, 1500);
   }
 
+
+  const setThemeCookie = (name, value) => {
+    Cookies.set(name, value, { expires: 10 });
+  }
+
+
+
   const toggleMode = () => {
 
     if (mode === 'light') {
       document.body.style.backgroundColor = "black";
       document.body.style.color = "white";
+      document.querySelector('.toggle-switch').defaultChecked=true;
       // let tArea = document.getElementById("texrea");
       // tArea.style.color = "white";
       // tArea.style.backgroundColor = "black";
@@ -49,10 +66,13 @@ function App() {
 
 
       setMode('dark');
+      setThemeCookie('mode','dark');
+
     }
     else {
       document.body.style.backgroundColor = "white";
       document.body.style.color = "black";
+      document.querySelector('.toggle-switch').defaultChecked=false;
       // let tArea = document.getElementById("texrea");
       // tArea.style.color = "black";
       // tArea.style.backgroundColor = "white";
@@ -67,6 +87,8 @@ function App() {
 
 
       setMode('light');
+      setThemeCookie('mode','light');
+
     }
   }
 
@@ -77,20 +99,20 @@ function App() {
 
       <Router>
 
-        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Navbar mode={Cookies.get('mode')} toggleMode={toggleMode} />
         <Alert alert={alert} />
 
          
           <Routes>
             <Route exact path="/About" element={
                <div className="container-fluid">
-               <Accordion mode={mode}/>
+               <Accordion mode={Cookies.get('mode')}/>
              </div>
             }/>
            
             <Route exact path="/" element={
                <div className="container">
-               <TextArea showAlert={showAlert} mode={mode}/>
+               <TextArea showAlert={showAlert} mode={Cookies.get('mode')}/>
              </div>
             }/>
              
